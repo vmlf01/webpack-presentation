@@ -7,14 +7,14 @@ Using webpack to package your web apps for production
 https://github.com/webpack
 
 ------
-github.com/vmlf01
+github.com/vmlf01/webpack-presentation
 
 
 
 
 ### what is webpack?
 ------
-- module bundler
+- module bundler, compile-time tool
 
 - transforms javascript modules with dependencies into static assets
 
@@ -43,7 +43,7 @@ that's for another presentation
 
 :(
 
-this one is just an introduction
+this one is just an introduction, so I'll show you a few simple samples to get you started
 
 
 
@@ -51,9 +51,12 @@ this one is just an introduction
 ### main contents
 ------
 - bundler (npm install devpack)
+
 - development web server (npm install devpack-dev-server)
   - serves static files and bundle
+
   - supports hot module replacement
+
   - page reload when that is not possible
 
 
@@ -63,38 +66,65 @@ this one is just an introduction
 ### architecture
 ------
 
+how I picture it:
+
+![](webpack-compilation.png)
 
 
 
-sources + dependencies -> loaders -> modules -> compilation + plug-ins -> chunks
+### sources/dependencies
+------
+- webpack compilation starts with specified entry files
 
-  - sources/dependencies
-    - supports CommonJS, AMD, ES6, CSS, Coffeescript, Images, LESS, etc.
-  - loaders
-    - used to pre-process files
-      - exports
-      - script
-      - cofee, babel, etc.
-      - file
-      - url
-      - css
-      - style
-      - html
-      - indexhtml
-  - modules
-    - isolated scope, no unwanted global polution
-  - plug-ins
-    - register to run on compiler pipeline events (run, make, emit, failed, etc.)
-  - assets
-    - emited by the compilation process
-  - chunks/entry-points
-    - final artifacts of the bundler
+- identifies the dependencies in each file recursively
+
+- dependencies can be other code files or other asset types
+
+
+
+### loaders
+------
+- each identified file is handled by one or more loaders
+
+- loaders are like converters that transform source files into webpack modules
+
+- you can chain them, sort of like streams
+
+- there are a lot of them!
+
+- https://webpack.github.io/docs/list-of-loaders.html
+
+
+
+### plug-ins
+------
+- plug-ins are components that can react to each step of the compilation
+
+- allow you to customize the build process
+
+- ex: BannerPlugin, add a banner to the top of each generated chunk, like legal notices, etc.
+
+
+
+### chunks
+------
+- final artifacts of the bundler
+
+- code chunks can be of three different types:
+  - entry chunk - contains webpack runtime
+
+  - initial chunk - is loaded when application starts
+
+  - normal chunk
+
+
 
 
 ### settings and configuration
 ------
 - CLI/inline
-- webpack.config.js
+
+- webpack.config.js (recommended)
 
 
 
@@ -123,10 +153,23 @@ sources + dependencies -> loaders -> modules -> compilation + plug-ins -> chunks
 ### links
 ------
 - https://github.com/webpack
+
 - https://github.com/petehunt/webpack-howto
+
+- https://unindented.github.io/webpack-presentation/
+
 - http://dontkry.com/posts/code/single-page-modules-with-webpack.html
 
 
 
 
-#questions?
+# questions?
+
+
+
+
+# thank you!
+
+github.com/vmlf01
+
+vmlf01@gmail.com
